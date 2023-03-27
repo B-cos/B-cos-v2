@@ -1,0 +1,5 @@
+# this is for running inference
+# for training see requirements-train.txt or the environment.yml file
+einops
+torch>=1.13
+torchvision

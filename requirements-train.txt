@@ -1,0 +1,20 @@
+# this will allow you to run all the basic things like training and inference
+einops
+pytorch-lightning>=1.8.0
+torch>=1.13
+torchvision
+torchmetrics>=0.11.0
+
+# if you want to run the localisation scripts you will need these
+captum
+lime
+scikit-image
+
+# if you want some extra functionality, you can install these
+# these are not required for basic usage, so you can also just comment them out
+wandb
+matplotlib
+seaborn
+submitit==1.4.5
+seaborn
+pandas

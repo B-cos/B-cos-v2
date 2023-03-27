@@ -1,0 +1,3 @@
+[submodule "extra/gradio_demo"]
+	path = extra/gradio_demo
+	url = https://huggingface.co/spaces/nps1ngh/B-cos
