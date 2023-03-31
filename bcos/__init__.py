@@ -8,7 +8,6 @@ import bcos.settings as settings
 from bcos.common import (
     BcosUtilMixin,
     explanation_mode,
-    get_transform_for_model,
     gradient_to_image,
     plot_contribution_map,
 )
@@ -26,5 +25,4 @@ __all__ = [
     "explanation_mode",
     "gradient_to_image",
     "plot_contribution_map",
-    "get_transform_for_model",
 ]

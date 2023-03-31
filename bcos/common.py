@@ -29,7 +29,6 @@ __all__ = [
     "explanation_mode",
     "gradient_to_image",
     "plot_contribution_map",
-    "get_transform_for_model",
 ]
 
 
@@ -540,42 +539,3 @@ def plot_contribution_map(
         ax.set_yticks([])
 
     return ax, im
-
-
-# ==============================================================================
-# Other misc. functions
-# ==============================================================================
-
-
-# TODO: remove this
-def get_transform_for_model(
-    model_name: str, base: Optional[str] = None, dataset: str = "ImageNet"
-) -> "Callable":
-    """
-    Convenience function to get the transform function for the given model.
-
-    Parameters
-    ----------
-    model_name : str
-        The name of the model. This does a simple lookup based on the name.
-    base : str, optional
-        The base name of the model. If not given, it is inferred from the model name.
-    dataset : str, optional
-        The dataset for the model.
-
-    Returns
-    -------
-    Callable
-        The transform function for the model.
-    """
-    warnings.warn(
-        "This function is deprecated and will be removed in a future version. "
-        "Please use `.transform` attribute of the model instead.",
-        DeprecationWarning,
-    )
-    from bcos.experiments.utils import Experiment
-
-    if base is None:
-        is_long = "long" in model_name
-        base = "bcos_final_long" if is_long else "bcos_final"
-    return Experiment(dataset, base, model_name).config["data"]["test_transform"]
