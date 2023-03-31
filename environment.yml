@@ -4,16 +4,16 @@ channels:
   - nvidia
   - conda-forge
 dependencies:
-  - python
-  - pytorch-lightning[version='>=1.8']
-  - torchmetrics
+  - python=3.10
+  - pytorch-lightning=1.8.1
+  - torchmetrics=0.11
   - wandb
-  - torchvision[version='>=0.14']
+  - torchvision=0.14
   - pytorch-cuda=11.6
   - ipython
   - matplotlib
   - jupyterlab
-  - pytorch
+  - pytorch=1.13
   - cudnn=8.3
   - cudatoolkit=11.6
   - ca-certificates
@@ -21,16 +21,17 @@ dependencies:
   - openssl
   - rich
   - mamba
-  - captum
-  - einops
+  - captum=0.5
+  - einops=0.6
   - seaborn
   - pudb
   - tqdm
-  - lime
-  - scikit-image
-  - timm
+  - lime=0.2.0.1
+  - scikit-image=0.19.3
+  - timm=0.6.12
   - ipywidgets
   - pytest
+  - pip
   - pip:
     - cloudpickle==2.2.0
     - submitit==1.4.5
