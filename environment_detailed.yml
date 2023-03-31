@@ -1,3 +1,4 @@
+# Note: this is just for reference, you should probably use the environment.yml file instead
 # this environment was created with mamba
 name: bcos
 channels:
@@ -444,4 +445,3 @@ dependencies:
   - pip:
       - cloudpickle==2.2.0
       - submitit==1.4.5
-
