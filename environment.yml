@@ -1,3 +1,5 @@
+# this is the environment used for producing the model results
+# the `bcos` package should be compatible with pytorch 2.0 though
 name: bcos
 channels:
   - pytorch

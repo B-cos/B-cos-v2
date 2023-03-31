@@ -1,5 +1,6 @@
 # Note: this is just for reference, you should probably use the environment.yml file instead
 # this environment was created with mamba
+# this is the environment used for producing the model results
 name: bcos
 channels:
   - pytorch
