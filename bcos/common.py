@@ -343,39 +343,6 @@ class BcosUtilMixin:
         _ = kwargs
         return torch.cat([self.attribute(image, t) for t in targets], dim=0)
 
-    def get_classifier(self) -> "nn.Module":
-        """
-        Returns the classifier of the model. Can be overriden.
-
-        Returns:
-            The classifier of the model if it exists.
-        """
-        child_classifiers = [
-            m.get_classifier()
-            for m in self.children()  # type: ignore
-            if hasattr(m, "get_classifier")
-        ]
-        assert len(child_classifiers) <= 1, "More than one classifier found in model."
-        assert len(child_classifiers) >= 1, "No classifier found in model."
-        return child_classifiers[0]
-
-    def get_feature_extractor(self) -> "nn.Module":
-        """
-        Returns the feature extractor of the model. Can be overriden.
-
-        Returns:
-            The feature extractor of the model if it exists.
-        """
-        child_feature_extractors = [
-            m.get_feature_extractor()
-            for m in self.children()  # type: ignore
-            if hasattr(m, "get_feature_extractor")
-        ]
-        N = len(child_feature_extractors)
-        assert N <= 1, "Multiple feature extractors found in model."
-        assert N >= 1, "No feature extractor found in model."
-        return child_feature_extractors[0]
-
 
 class explanation_mode(_DecoratorContextManager):
     """
