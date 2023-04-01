@@ -6,7 +6,7 @@ However, they are useful for e.g. visualizing the explanations etc.
 So essentially it's a collection of convenience/helper functions/classes.
 """
 import warnings
-from typing import TYPE_CHECKING, Any, Callable, Dict, List, Optional, Tuple, Union
+from typing import TYPE_CHECKING, Any, Dict, List, Optional, Tuple, Union
 
 if TYPE_CHECKING:
     # this isn't supposed to be a hard dependency
@@ -29,7 +29,6 @@ __all__ = [
     "explanation_mode",
     "gradient_to_image",
     "plot_contribution_map",
-    "get_transform_for_model",
 ]
 
 
@@ -192,7 +191,7 @@ class BcosUtilMixin:
     def gradient_to_image(
         image: "Tensor",
         linear_mapping: "Tensor",
-        smooth: int = 0,
+        smooth: int = 15,
         alpha_percentile: float = 99.5,
     ) -> "np.ndarray":
         """
@@ -344,39 +343,6 @@ class BcosUtilMixin:
         _ = kwargs
         return torch.cat([self.attribute(image, t) for t in targets], dim=0)
 
-    def get_classifier(self) -> "nn.Module":
-        """
-        Returns the classifier of the model. Can be overriden.
-
-        Returns:
-            The classifier of the model if it exists.
-        """
-        child_classifiers = [
-            m.get_classifier()
-            for m in self.children()  # type: ignore
-            if hasattr(m, "get_classifier")
-        ]
-        assert len(child_classifiers) <= 1, "More than one classifier found in model."
-        assert len(child_classifiers) >= 1, "No classifier found in model."
-        return child_classifiers[0]
-
-    def get_feature_extractor(self) -> "nn.Module":
-        """
-        Returns the feature extractor of the model. Can be overriden.
-
-        Returns:
-            The feature extractor of the model if it exists.
-        """
-        child_feature_extractors = [
-            m.get_feature_extractor()
-            for m in self.children()  # type: ignore
-            if hasattr(m, "get_feature_extractor")
-        ]
-        N = len(child_feature_extractors)
-        assert N <= 1, "Multiple feature extractors found in model."
-        assert N >= 1, "No feature extractor found in model."
-        return child_feature_extractors[0]
-
 
 class explanation_mode(_DecoratorContextManager):
     """
@@ -418,7 +384,7 @@ class explanation_mode(_DecoratorContextManager):
             m.set_explanation_mode(False)
 
 
-def gradient_to_image(image, linear_mapping, smooth=0, alpha_percentile=99.5):
+def gradient_to_image(image, linear_mapping, smooth=15, alpha_percentile=99.5):
     """
     From https://github.com/moboehle/B-cos/blob/0023500ce/interpretability/utils.py#L41.
     Computing color image from dynamic linear mapping of B-cos models.
@@ -540,42 +506,3 @@ def plot_contribution_map(
         ax.set_yticks([])
 
     return ax, im
-
-
-# ==============================================================================
-# Other misc. functions
-# ==============================================================================
-
-
-# TODO: remove this
-def get_transform_for_model(
-    model_name: str, base: Optional[str] = None, dataset: str = "ImageNet"
-) -> "Callable":
-    """
-    Convenience function to get the transform function for the given model.
-
-    Parameters
-    ----------
-    model_name : str
-        The name of the model. This does a simple lookup based on the name.
-    base : str, optional
-        The base name of the model. If not given, it is inferred from the model name.
-    dataset : str, optional
-        The dataset for the model.
-
-    Returns
-    -------
-    Callable
-        The transform function for the model.
-    """
-    warnings.warn(
-        "This function is deprecated and will be removed in a future version. "
-        "Please use `.transform` attribute of the model instead.",
-        DeprecationWarning,
-    )
-    from bcos.experiments.utils import Experiment
-
-    if base is None:
-        is_long = "long" in model_name
-        base = "bcos_final_long" if is_long else "bcos_final"
-    return Experiment(dataset, base, model_name).config["data"]["test_transform"]

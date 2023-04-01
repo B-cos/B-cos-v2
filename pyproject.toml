@@ -4,7 +4,11 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "bcos"
-version = "0.0.1"
+authors = [
+    {name = "Moritz Böhle", email = "mboehle@mpi-inf.mpg.de"},
+    {name = "Navdeeppal Singh", email = "npsingh0181@gmail.com"},
+]
+version = "0.0.2"
 description = "B-cos models."
 readme = "README.md"
 license = {text = "Apache License 2.0"}
