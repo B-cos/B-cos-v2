@@ -191,7 +191,7 @@ class BcosUtilMixin:
     def gradient_to_image(
         image: "Tensor",
         linear_mapping: "Tensor",
-        smooth: int = 0,
+        smooth: int = 15,
         alpha_percentile: float = 99.5,
     ) -> "np.ndarray":
         """
@@ -384,7 +384,7 @@ class explanation_mode(_DecoratorContextManager):
             m.set_explanation_mode(False)
 
 
-def gradient_to_image(image, linear_mapping, smooth=0, alpha_percentile=99.5):
+def gradient_to_image(image, linear_mapping, smooth=15, alpha_percentile=99.5):
     """
     From https://github.com/moboehle/B-cos/blob/0023500ce/interpretability/utils.py#L41.
     Computing color image from dynamic linear mapping of B-cos models.
