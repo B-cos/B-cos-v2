@@ -13,7 +13,7 @@ import torch.nn as nn
 from torchvision.ops import StochasticDepth
 
 from bcos.common import BcosUtilMixin
-from bcos.modules import LogitLayer
+from bcos.modules import BcosConv2d, LogitLayer, norms
 
 __all__ = [
     "BcosResNet",
@@ -45,13 +45,17 @@ __all__ = [
 ]
 
 
+DEFAULT_NORM_LAYER = norms.NoBias(norms.DetachablePositionNorm2d)
+DEFAULT_CONV_LAYER = BcosConv2d
+
+
 def conv3x3(
     in_planes: int,
     out_planes: int,
     stride: int = 1,
     groups: int = 1,
     dilation: int = 1,
-    conv_layer: Callable[..., nn.Module] = None,
+    conv_layer: Callable[..., nn.Module] = DEFAULT_CONV_LAYER,
 ):
     """3x3 convolution with padding"""
     return conv_layer(
@@ -70,7 +74,7 @@ def conv1x1(
     in_planes: int,
     out_planes: int,
     stride: int = 1,
-    conv_layer: Callable[..., nn.Module] = None,
+    conv_layer: Callable[..., nn.Module] = DEFAULT_CONV_LAYER,
 ):
     """1x1 convolution"""
     return conv_layer(
@@ -94,8 +98,8 @@ class BasicBlock(nn.Module):
         groups: int = 1,
         base_width: int = 64,
         dilation: int = 1,
-        norm_layer: Optional[Callable[..., nn.Module]] = None,
-        conv_layer: Callable[..., nn.Module] = None,
+        norm_layer: Optional[Callable[..., nn.Module]] = DEFAULT_NORM_LAYER,
+        conv_layer: Callable[..., nn.Module] = DEFAULT_CONV_LAYER,
         # act_layer: Callable[..., nn.Module] = None,
         stochastic_depth_prob: float = 0.0,
     ):
@@ -169,8 +173,8 @@ class Bottleneck(nn.Module):
         groups: int = 1,
         base_width: int = 64,
         dilation: int = 1,
-        norm_layer: Optional[Callable[..., nn.Module]] = None,
-        conv_layer: Callable[..., nn.Module] = None,
+        norm_layer: Optional[Callable[..., nn.Module]] = DEFAULT_NORM_LAYER,
+        conv_layer: Callable[..., nn.Module] = DEFAULT_CONV_LAYER,
         # act_layer: Callable[..., nn.Module] = None,
         stochastic_depth_prob: float = 0.0,
     ) -> None:
@@ -244,8 +248,8 @@ class BcosResNet(BcosUtilMixin, nn.Module):
         groups: int = 1,
         width_per_group: int = 64,
         replace_stride_with_dilation: Optional[List[bool]] = None,
-        norm_layer: Optional[Callable[..., nn.Module]] = None,
-        conv_layer: Callable[..., nn.Module] = None,
+        norm_layer: Optional[Callable[..., nn.Module]] = DEFAULT_NORM_LAYER,
+        conv_layer: Callable[..., nn.Module] = DEFAULT_CONV_LAYER,
         # act_layer: Callable[..., nn.Module] = None,
         inplanes: int = 64,
         small_inputs: bool = False,

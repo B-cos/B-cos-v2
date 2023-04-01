@@ -19,7 +19,7 @@ from torch import Tensor
 from torch.hub import load_state_dict_from_url
 
 from bcos.common import BcosUtilMixin
-from bcos.modules import LogitLayer
+from bcos.modules import BcosConv2d, LogitLayer, norms
 
 __all__ = [
     "BcosDenseNet",
@@ -34,6 +34,10 @@ __all__ = [
 ]
 
 
+DEFAULT_NORM_LAYER = norms.NoBias(norms.DetachablePositionNorm2d)
+DEFAULT_CONV_LAYER = BcosConv2d
+
+
 class _DenseLayer(nn.Module):
     def __init__(
         self,
@@ -42,8 +46,8 @@ class _DenseLayer(nn.Module):
         bn_size: int,
         drop_rate: float,
         memory_efficient: bool = False,
-        norm_layer: Callable[..., nn.Module] = None,
-        conv_layer: Callable[..., nn.Module] = None,
+        norm_layer: Callable[..., nn.Module] = DEFAULT_NORM_LAYER,
+        conv_layer: Callable[..., nn.Module] = DEFAULT_CONV_LAYER,
     ) -> None:
         super(_DenseLayer, self).__init__()
         # Diff to torchvision: Removed ReLU and replaced BatchNorm with norm_layer
@@ -135,8 +139,8 @@ class _DenseBlock(nn.ModuleDict):
         growth_rate: int,
         drop_rate: float,
         memory_efficient: bool = False,
-        norm_layer: Callable[..., nn.Module] = None,
-        conv_layer: Callable[..., nn.Module] = None,
+        norm_layer: Callable[..., nn.Module] = DEFAULT_NORM_LAYER,
+        conv_layer: Callable[..., nn.Module] = DEFAULT_CONV_LAYER,
     ) -> None:
         super(_DenseBlock, self).__init__()
         for i in range(num_layers):
@@ -164,8 +168,8 @@ class _Transition(nn.Sequential):
         self,
         num_input_features: int,
         num_output_features: int,
-        norm_layer: Callable[..., nn.Module] = None,
-        conv_layer: Callable[..., nn.Module] = None,
+        norm_layer: Callable[..., nn.Module] = DEFAULT_NORM_LAYER,
+        conv_layer: Callable[..., nn.Module] = DEFAULT_CONV_LAYER,
     ) -> None:
         super(_Transition, self).__init__()
         # Diff to torchvision: Deleted relu and changed conv to ProjectionConv2d
@@ -208,8 +212,8 @@ class BcosDenseNet(BcosUtilMixin, nn.Module):
         num_classes: int = 1000,
         in_chans: int = 6,
         memory_efficient: bool = False,
-        norm_layer: Callable[..., nn.Module] = None,
-        conv_layer: Callable[..., nn.Module] = None,
+        norm_layer: Callable[..., nn.Module] = DEFAULT_NORM_LAYER,
+        conv_layer: Callable[..., nn.Module] = DEFAULT_CONV_LAYER,
         small_inputs: bool = False,  # True for 32x32 images from gpleiss' impl
         logit_bias: Optional[float] = None,
         logit_temperature: Optional[float] = None,
