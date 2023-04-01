@@ -20,6 +20,7 @@ from torch import Tensor, nn
 
 class BcosConv2d(nn.Conv2d):
     def __init__(self, *args, b: float = 2.0, **kwargs):
+        kwargs["bias"] = False
         super().__init__(*args, **kwargs)
         self.b = b
         assert self.dilation == (1, 1), "Dilation > 1 is not supported."
@@ -121,8 +122,39 @@ class BatchNorm2dUncenteredNoBias(nn.BatchNorm2d):
         return result
 
 
-conv3x3 = functools.partial(BcosConv2d, kernel_size=3, padding=1, bias=False)
-conv1x1 = functools.partial(BcosConv2d, kernel_size=1, bias=False)
+def conv3x3(
+    in_planes: int,
+    out_planes: int,
+    stride: int = 1,
+    groups: int = 1,
+    dilation: int = 1,
+):
+    """3x3 convolution with padding"""
+    return BcosConv2d(
+        in_planes,
+        out_planes,
+        kernel_size=3,
+        stride=stride,
+        padding=dilation,
+        groups=groups,
+        bias=False,
+        dilation=dilation,
+    )
+
+
+def conv1x1(
+    in_planes: int,
+    out_planes: int,
+    stride: int = 1,
+):
+    """1x1 convolution"""
+    return BcosConv2d(
+        in_planes,
+        out_planes,
+        kernel_size=1,
+        stride=stride,
+        bias=False,
+    )
 
 
 class BasicBlock(nn.Module):
@@ -337,7 +369,7 @@ def _resnet(
             progress=progress,
         )
         # load with changed keys
-        model.load_state_dict({k[len("0.")]: v for k, v in state_dict.items()})
+        model.load_state_dict(state_dict)
     return model
 
 
@@ -399,12 +431,12 @@ def resnext50_32x4d(
 # ---------------------
 BASE = "https://github.com/B-cos/B-cos-v2/releases/download/v0.0.1-weights"
 URLS = {
-    "resnet_18": f"{BASE}/resnet_18-68b4160fff.pth",
-    "resnet_34": f"{BASE}/resnet_34-a63425a03e.pth",
-    "resnet_50": f"{BASE}/resnet_50-ead259efe4.pth",
-    "resnet_101": f"{BASE}/resnet_101-84c3658278.pth",
-    "resnet_152": f"{BASE}/resnet_152-42051a77c1.pth",
-    "resnext_50_32x4d": f"{BASE}/resnext_50_32x4d-57af241ab9.pth",
-    "resnet_50_long": f"{BASE}/resnet_50_long-ef38a88533.pth",
-    "resnet_152_long": f"{BASE}/resnet_152_long-0b4b434939.pth",
+    "resnet18": f"{BASE}/resnet_18-68b4160fff.pth",
+    "resnet34": f"{BASE}/resnet_34-a63425a03e.pth",
+    "resnet50": f"{BASE}/resnet_50-ead259efe4.pth",
+    "resnet101": f"{BASE}/resnet_101-84c3658278.pth",
+    "resnet152": f"{BASE}/resnet_152-42051a77c1.pth",
+    "resnext50_32x4d": f"{BASE}/resnext_50_32x4d-57af241ab9.pth",
+    "resnet50_long": f"{BASE}/resnet_50_long-ef38a88533.pth",
+    "resnet152_long": f"{BASE}/resnet_152_long-0b4b434939.pth",
 }
