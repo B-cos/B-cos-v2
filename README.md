@@ -63,12 +63,14 @@ plt.show()
 ```
 
 Each of the models has its inference transform attached to it, accessible via `model.transform`.
-Furthermore, each model has a `explain` method that takes an image tensor and returns a dictionary
+Furthermore, each model has a `.explain()` method that takes an image tensor and returns a dictionary
 containing the prediction and the explanation, and some extras.
 <!-- TODO: add link to docs if end up making a site for them -->
-
 See the [demo notebook](https://colab.research.google.com/drive/1bdc1zdIVvv7XUJj8B8Toe6VMPYAsIT9w?usp=sharing)
-for more details.
+for more details on the `.explain()` method.
+
+Furthermore, each model has a `get_classifier` and `get_feature_extractor` method that return the
+classifier and feature extractor modules respectively. These can useful for fine-tuning the models!
 
 <!-- =============================================================================================================== -->
 
