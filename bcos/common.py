@@ -6,7 +6,7 @@ However, they are useful for e.g. visualizing the explanations etc.
 So essentially it's a collection of convenience/helper functions/classes.
 """
 import warnings
-from typing import TYPE_CHECKING, Any, Callable, Dict, List, Optional, Tuple, Union
+from typing import TYPE_CHECKING, Any, Dict, List, Optional, Tuple, Union
 
 if TYPE_CHECKING:
     # this isn't supposed to be a hard dependency
