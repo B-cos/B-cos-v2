@@ -2,8 +2,9 @@
 For easier copy-pasting.
 No need to extract stuff from a super-coupled codebase :)
 
-Note that outputs might be different from the original implementation
-as this uses some slightly different ops
+Note that if you want to use the pretrained model weights,
+then please keep in mind that the outputs might be different from the original implementation
+as this uses some slightly different ops than with which the weights were trained.
 
 ResNet-50 implementation modified for B-cos from 
 Modified from https://github.com/pytorch/vision/blob/0504df5ddf9431909130e7788faf05446bb8a2/torchvision/models/resnet.py
