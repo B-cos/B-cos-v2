@@ -29,7 +29,8 @@ If you prefer a more hands-on approach,
 you can take a look at the [demo notebook on `Colab`](https://colab.research.google.com/drive/1bdc1zdIVvv7XUJj8B8Toe6VMPYAsIT9w?usp=sharing).
 or load the models directly via torch hub as explained below.
 
-To ease 
+If you simply want to copy the model definitions, we provide a reference minimal, single-file implementation including
+explanation mode in [`extra/minimal_bcos_resnet.py`](extra/minimal_bcos_resnet.py)!
 
 
 # Quick Start
