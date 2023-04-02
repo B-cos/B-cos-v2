@@ -154,28 +154,8 @@ how the setup works and how to train your own models.
 
 # Model Zoo
 Here are the ImageNet pre-trained models available in the model zoo.
-
-<!--
-"resnet_101": f"{BASE}/resnet_101-84c3658278.pth",
-        "resnet_152": f"{BASE}/resnet_152-42051a77c1.pth",
-        "resnext_50_32x4d": f"{BASE}/resnext_50_32x4d-57af241ab9.pth",
-        # densenets
-        "densenet_121": f"{BASE}/densenet_121-b8daf96afb.pth",
-        "densenet_161": f"{BASE}/densenet_161-9e9ea51353.pth",
-        "densenet_169": f"{BASE}/densenet_169-7037ee0604.pth",
-        "densenet_201": f"{BASE}/densenet_201-00ac87066f.pth",
-        # other
-        "vgg_11_bnu": f"{BASE}/vgg_11_bnu-34036029f0.pth",
-    },
-    "bcos_final_long": {
-        "convnext_tiny_pn": f"{BASE}/convnext_tiny_pn-539b1bfb37.pth",
-        "convnext_base_pn": f"{BASE}/convnext_base_pn-b0495852c6.pth",
-        "convnext_tiny_bnu": f"{BASE}/convnext_tiny_bnu-dbd7f5ef9d.pth",
-        "convnext_base_bnu": f"{BASE}/convnext_base_bnu-7c32a704b3.pth",
-        "densenet_121": f"{BASE}/densenet_121_long-5175461597.pth",
-        "resnet_50": f"{BASE}/resnet_50_long-ef38a88533.pth",
-        "resnet_152": f"{BASE}/resnet_152_long-0b4b434939.pth",
--->
+You can find the links to the model weights below 
+(uploaded to the [`Weights` GitHub release](https://github.com/B-cos/B-cos-v2/releases/tag/v0.0.1-weights)).
 
 | Model/Entrypoint    | Top-1 Accuracy | Top-5 Accuracy | #Params | Download                                                                                                     |
 |---------------------|----------------|----------------|---------|--------------------------------------------------------------------------------------------------------------|
