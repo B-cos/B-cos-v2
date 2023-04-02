@@ -178,9 +178,12 @@ def get_configs_and_model_factory(
 
 
 ALLOWED_SANITIZED_DATA_TYPES = (str, int, float, bool, tuple, list, type(None))
+SANITIZED_DICT_TYPE = Dict[
+    str, Union[str, int, float, bool, tuple, list, type(None), "SANITIZED_DICT_TYPE"]
+]
 
 
-def sanitize_config(config_dict: Dict):
+def sanitize_config(config_dict: Dict) -> SANITIZED_DICT_TYPE:
     """
     This sanitizes the config dict so that the hyperparameters can be nicely
     logged as strings or numbers or other primitive types except dict.
@@ -199,8 +202,8 @@ def sanitize_config(config_dict: Dict):
 
     Returns
     -------
-    Dict[str, str | int | float | bool | tuple | list | None]
-        A flattened dictionary with all sanitized values.
+    SANITIZED_DICT_TYPE
+        The sanitized config.
     """
     result = dict()
     for key, value in config_dict.items():
