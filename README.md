@@ -26,10 +26,10 @@ If you want to take a quick look at the explanations the models generate,
 you can try out the Gradio web demo on [![Hugging Face Spaces](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-blue)](https://huggingface.co/spaces/nps1ngh/B-cos).
 
 If you prefer a more hands-on approach, 
-you can take a look at the [demo notebook on `Colab`](https://colab.research.google.com/drive/1bdc1zdIVvv7XUJj8B8Toe6VMPYAsIT9w?usp=sharing).
-or load the models directly via torch hub as explained below.
+you can take a look at the [demo notebook on `Colab`](https://colab.research.google.com/drive/1bdc1zdIVvv7XUJj8B8Toe6VMPYAsIT9w?usp=sharing)
+or load the models directly via `torch.hub` as explained below.
 
-If you simply want to copy the model definitions, we provide a reference minimal, single-file implementation including
+If you simply want to copy the model definitions, we provide a minimal, single-file reference implementation including
 explanation mode in [`extra/minimal_bcos_resnet.py`](extra/minimal_bcos_resnet.py)!
 
 
@@ -114,6 +114,7 @@ pip install -r requirements-train.txt
 You can either set the paths in [`bcos/settings.py`](bcos/settings.py) or set the environment variables
 1. `DATA_ROOT`
 2. `IMAGENET_PATH`
+
 to the paths of the data directories.
 
 The `DATA_ROOT` environment variable should point to the data root directory for CIFAR-10 
@@ -154,27 +155,49 @@ how the setup works and how to train your own models.
 # Model Zoo
 Here are the ImageNet pre-trained models available in the model zoo.
 
-| Model/Entrypoint    | Top-1 Accuracy | Top-5 Accuracy | #Params |
-|---------------------|----------------|----------------|---------|
-| `resnet18`          | 68.736%        | 87.430%        | 11.69M  |
-| `resnet34`          | 72.284%        | 90.052%        | 21.80M  |
-| `resnet50`          | 75.882%        | 92.528%        | 25.52M  |
-| `resnet101`         | 76.532%        | 92.538%        | 44.50M  |
-| `resnet152`         | 76.484%        | 92.398%        | 60.13M  |
-| `resnext50_32x4d`   | 75.820%        | 91.810%        | 25.00M  |
-| `densenet121`       | 73.612%        | 91.106%        | 7.95M   |
-| `densenet161`       | 76.622%        | 92.554%        | 28.58M  |
-| `densenet169`       | 75.186%        | 91.786%        | 14.08M  |
-| `densenet201`       | 75.480%        | 91.992%        | 19.91M  |
-| `vgg11_bnu`         | 69.310%        | 88.388%        | 132.86M |
-|                     |                |                |         |
-| `convnext_tiny`     | 77.488%        | 93.192%        | 28.54M  |
-| `convnext_base`     | 79.650%        | 94.614%        | 88.47M  |
-| `convnext_tiny_bnu` | 76.826%        | 93.090%        | 28.54M  |
-| `convnext_base_bnu` | 80.142%        | 94.834%        | 88.47M  |
-| `densenet121_long`  | 77.302%        | 93.234%        | 7.95M   |
-| `resnet50_long`     | 79.468%        | 94.452%        | 25.52M  |
-| `resnet152_long`    | 80.144%        | 94.116%        | 60.13M  |
+<!--
+"resnet_101": f"{BASE}/resnet_101-84c3658278.pth",
+        "resnet_152": f"{BASE}/resnet_152-42051a77c1.pth",
+        "resnext_50_32x4d": f"{BASE}/resnext_50_32x4d-57af241ab9.pth",
+        # densenets
+        "densenet_121": f"{BASE}/densenet_121-b8daf96afb.pth",
+        "densenet_161": f"{BASE}/densenet_161-9e9ea51353.pth",
+        "densenet_169": f"{BASE}/densenet_169-7037ee0604.pth",
+        "densenet_201": f"{BASE}/densenet_201-00ac87066f.pth",
+        # other
+        "vgg_11_bnu": f"{BASE}/vgg_11_bnu-34036029f0.pth",
+    },
+    "bcos_final_long": {
+        "convnext_tiny_pn": f"{BASE}/convnext_tiny_pn-539b1bfb37.pth",
+        "convnext_base_pn": f"{BASE}/convnext_base_pn-b0495852c6.pth",
+        "convnext_tiny_bnu": f"{BASE}/convnext_tiny_bnu-dbd7f5ef9d.pth",
+        "convnext_base_bnu": f"{BASE}/convnext_base_bnu-7c32a704b3.pth",
+        "densenet_121": f"{BASE}/densenet_121_long-5175461597.pth",
+        "resnet_50": f"{BASE}/resnet_50_long-ef38a88533.pth",
+        "resnet_152": f"{BASE}/resnet_152_long-0b4b434939.pth",
+-->
+
+| Model/Entrypoint    | Top-1 Accuracy | Top-5 Accuracy | #Params | Download                                                                                                     |
+|---------------------|----------------|----------------|---------|--------------------------------------------------------------------------------------------------------------|
+| `resnet18`          | 68.736%        | 87.430%        | 11.69M  | [link](https://github.com/B-cos/B-cos-v2/releases/download/v0.0.1-weights/resnet_18-68b4160fff.pth)          |
+| `resnet34`          | 72.284%        | 90.052%        | 21.80M  | [link](https://github.com/B-cos/B-cos-v2/releases/download/v0.0.1-weights/resnet_34-a63425a03e.pth)          |
+| `resnet50`          | 75.882%        | 92.528%        | 25.52M  | [link](https://github.com/B-cos/B-cos-v2/releases/download/v0.0.1-weights/resnet_50-ead259efe4.pth)          |
+| `resnet101`         | 76.532%        | 92.538%        | 44.50M  | [link](https://github.com/B-cos/B-cos-v2/releases/download/v0.0.1-weights/resnet_101-84c3658278.pth)         |
+| `resnet152`         | 76.484%        | 92.398%        | 60.13M  | [link](https://github.com/B-cos/B-cos-v2/releases/download/v0.0.1-weights/resnet_152-42051a77c1.pth)         |                            
+| `resnext50_32x4d`   | 75.820%        | 91.810%        | 25.00M  | [link](https://github.com/B-cos/B-cos-v2/releases/download/v0.0.1-weights/resnext_50_32x4d-57af241ab9.pth)   |
+| `densenet121`       | 73.612%        | 91.106%        | 7.95M   | [link](https://github.com/B-cos/B-cos-v2/releases/download/v0.0.1-weights/densenet_121-b8daf96afb.pth)       |
+| `densenet161`       | 76.622%        | 92.554%        | 28.58M  | [link](https://github.com/B-cos/B-cos-v2/releases/download/v0.0.1-weights/densenet_161-9e9ea51353.pth)       |
+| `densenet169`       | 75.186%        | 91.786%        | 14.08M  | [link](https://github.com/B-cos/B-cos-v2/releases/download/v0.0.1-weights/densenet_169-7037ee0604.pth)       |
+| `densenet201`       | 75.480%        | 91.992%        | 19.91M  | [link](https://github.com/B-cos/B-cos-v2/releases/download/v0.0.1-weights/densenet_201-00ac87066f.pth)       |
+| `vgg11_bnu`         | 69.310%        | 88.388%        | 132.86M | [link](https://github.com/B-cos/B-cos-v2/releases/download/v0.0.1-weights/vgg_11_bnu-34036029f0.pth)         |
+|                     |                |                |         |                                                                                                              |
+| `convnext_tiny`     | 77.488%        | 93.192%        | 28.54M  | [link](https://github.com/B-cos/B-cos-v2/releases/download/v0.0.1-weights/convnext_tiny_pn-539b1bfb37.pth)   |
+| `convnext_base`     | 79.650%        | 94.614%        | 88.47M  | [link](https://github.com/B-cos/B-cos-v2/releases/download/v0.0.1-weights/convnext_base_pn-b0495852c6.pth)   |                                 
+| `convnext_tiny_bnu` | 76.826%        | 93.090%        | 28.54M  | [link](https://github.com/B-cos/B-cos-v2/releases/download/v0.0.1-weights/convnext_tiny_bnu-dbd7f5ef9d.pth)  |                                 
+| `convnext_base_bnu` | 80.142%        | 94.834%        | 88.47M  | [link](https://github.com/B-cos/B-cos-v2/releases/download/v0.0.1-weights/convnext_base_bnu-7c32a704b3.pth)  |
+| `densenet121_long`  | 77.302%        | 93.234%        | 7.95M   | [link](https://github.com/B-cos/B-cos-v2/releases/download/v0.0.1-weights/densenet_121_long-5175461597.pth)  |
+| `resnet50_long`     | 79.468%        | 94.452%        | 25.52M  | [link](https://github.com/B-cos/B-cos-v2/releases/download/v0.0.1-weights/resnet_50_long-ef38a88533.pth)     |
+| `resnet152_long`    | 80.144%        | 94.116%        | 60.13M  | [link](https://github.com/B-cos/B-cos-v2/releases/download/v0.0.1-weights/resnet_152_long-0b4b434939.pth)    |
 
 We'll add ViT models to the model zoo soon, stay tuned!
 You can find these entrypoints in [`bcos/models/pretrained.py`](bcos/models/pretrained.py).
@@ -186,7 +209,7 @@ This repository's code is licensed under the Apache License 2.0
 which you can find in the [LICENSE](./LICENSE) file.
 
 The pre-trained models are trained on ImageNet (and are hence derived from it), which is 
-licensed under the [ImageNet Terms of Use](https://image-net.org/download),
-which among others, only allows non-commercial use of the dataset.
+licensed under the [ImageNet Terms of access](https://image-net.org/download),
+which among others things, only allows non-commercial use of the dataset.
 It is therefore your responsibility to check whether you have permission to use the 
 pre-trained models for *your* use case.

@@ -80,7 +80,7 @@ In each of the `<dataset>/<base_network>/` directories, there are the following 
 1. `experiment_parameters.py`
 2. `model.py`
 
-The `model.py` file contains a `get_model` function which gets the model config and returns the model,
+The `model.py` file contains a `get_model` function which takes as input the model config and returns the model,
 doing any necessary processing of the config.
 
 The `experiment_parameters.py` file contains all the configs in a dictionary called `CONFIGS`, which is a mapping
@@ -93,11 +93,17 @@ See an example here: [`bcos/experiments/ImageNet/bcos_final/experiment_parameter
 > **Warning**
 > 
 > The batch size in the config is the batch size per GPU and **NOT** the total effective batch size.
+> We mention how many GPUs we used in the configs, and below in the [Reproducing the results](#reproducing-the-results) section.
 
 
 ## Training
 As mentioned earlier, we use [PyTorch Lightning](https://lightning.ai/docs/pytorch/stable/) for training.
 The trainer is in [`bcos/training/trainer.py`](bcos/training/trainer.py).
+The trainer essentially consists of a general purpose [`LightningModule`](https://lightning.ai/docs/pytorch/stable/api/pytorch_lightning.core.LightningModule.html)
+for training classification models called [`ClassificationLitModel`](bcos/training/trainer.py#L26).
+The `ClassificationLitModel` class essentially wraps around some classification model (via our config system)
+and implements the necessary methods for training via PyTorch Lightning.
+For more details, see [`bcos/training/trainer.py`](bcos/training/trainer.py).
 
 To run training, you can use [`train.py`](train.py) or [`run_with_submitit.py`](run_with_submitit.py).
 
@@ -126,29 +132,28 @@ The following are the most relevant options for each:
 
 > **Warning**
 > 
-> ⚠️⚠️⚠️
-> 
 > As mentioned earlier (in the config system section), the batch size in the config 
 > is the batch size per GPU and **NOT** the total effective batch size.
 > This means you need the adjust the batch size in the config if your number of GPUs changes.
-> 
-> ⚠️⚠️⚠️
 
 
 Look into the scripts for more details on their CLI options.
 In the following, I'll describe the commands used for training the models.
 
 # Reproducing the results
-Note that a lot of factors like the PyTorch version, GPU model etc. can affect the results even 
-after setting seeds (we used [`pl.seed_everything`](https://pytorch-lightning.readthedocs.io/en/latest/common/seed.html) 
-to set seeds).
+Note that a lot of factors like the PyTorch version, CUDA/cuDNN version, GPU model etc. can affect the results even 
+after setting seeds.
 Hence, depending upon your setup the results you get _may_ not be exactly the same as the ones reported.
+Nonetheless, we tried to make the training reproducible
+by using Lightning's [`pl.seed_everything`](https://pytorch-lightning.readthedocs.io/en/latest/common/seed.html).
 
 The commands are below. These will create a respective experiment run folder in 
 `experiments/<dataset>/<base_network>/<experiment_name>/` containing the logs, checkpoints, etc.
 
-*Important*: This is **different** the `bcos/experiments` directory mentioned earlier 
-(so you delete the artifacts from a failed run without deleting the config alongside with it).
+> **Note**
+>
+> This is **different** the `bcos/experiments` directory mentioned earlier 
+(this is done, so that one can delete the artifacts from a failed run without deleting the config alongside with it).
 The configs are stored in `bcos/experiments` and the experiment runs are stored in `experiments` 
 (it's in the root).
 
@@ -165,7 +170,10 @@ python train.py \
 
 > **Warning**
 > 
-> `experiment_name`s ending with `-nomaxout` have no maxout, **BUT** the ones without have `maxout=2` (like in v1).
+> This is only specific to our CIFAR10 models:
+> `experiment_name`s ending with `-nomaxout` have no MaxOut activation, **BUT** the ones without have `maxout=2` (like in v1).
+>
+> For ImageNet, all the models have ***no*** MaxOut activation.
 
 ## ImageNet
 For ImageNet, we trained on **4** GPUs for the `bcos_final` configs and **8** GPUs for the `bcos_final_long` configs.
@@ -182,7 +190,7 @@ python run_with_submitit.py \
 ```bash
 python run_with_submitit.py \
     --dataset ImageNet \
-    --base_network bcos_final \
+    --base_network bcos_final_long \
     --experiment_name <experiment_name> \
     --gpus 4 \
     --nodes 2
@@ -247,7 +255,9 @@ python evaluate.py \
     --reload last
 ```
 
-If you want to run localisation analysis on the trained model, you can use the `localisation_analysis.py` script:
+If you want to run localisation analysis on the trained model, 
+you can use the [`localisation.py`](interpretability/analyses/localisation.py) 
+script:
 ```bash
 python -m interpretability.analyses.localisation \
     --reload last \
@@ -257,10 +267,23 @@ python -m interpretability.analyses.localisation \
     --batch_size 64 \
     --save_path "experiments/CIFAR10/norm_ablations_final/resnet_20_bnu-linear-nomaxout/"
 ```
-Note that `--smooth 1` means no smoothing (as kernel size = 1)
+> **Note**
+> 
+> Note that `--smooth 1` means no smoothing (as kernel size = 1)
 and `--batch_size 64` may not be effective depending upon the explanation method used (forced to be 1).
 
 This will create a folder `localisation_analysis` in the experiment run directory containing the results.
+
+An example command for running localisation analysis on an ImageNet model is:
+```bash
+python -m interpretability.analyses.localisation \
+    --reload best_any \
+    --analysis_config 250_2x2 \
+    --explainer_name Ours \
+    --smooth 15 \
+    --batch_size 64 \
+    --save_path "experiments/ImageNet/bcos_final/resnet_18/"
+```
 
 ---
 
