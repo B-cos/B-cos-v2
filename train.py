@@ -85,7 +85,7 @@ def get_parser(add_help=True):
         help="Project name of run.",
     )
     parser.add_argument(
-        "--wandb_id", default=os.getenv("WANDB_ID"), help="Project name of run."
+        "--wandb_id", default=os.getenv("WANDB_ID"), help="WandB ID of the run."
     )
     parser.add_argument(
         "--wandb_name",
