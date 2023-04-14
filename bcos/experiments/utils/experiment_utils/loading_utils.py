@@ -229,7 +229,7 @@ def get_state_dict_and_training_ckpt_from_save_dir(
         training_ckpt = load_training_checkpoint_for_epoch_in(save_dir, epoch)
 
     # get the model state dict
-    state_dict = load_model_state_dict_from_training_ckpt(training_ckpt)
+    state_dict = load_model_state_dict_from_training_ckpt(training_ckpt, ema=ema)
 
     # print extra information if need be
     if verbose:
