@@ -90,7 +90,7 @@ class PLCheckpointStateDictLoader:
         model_state_dict = training_ckpt["state_dict"]
         prefix = cls.MODEL_STATE_DICT_EMA_PREFIX if ema else cls.MODEL_STATE_DICT_PREFIX
 
-        if ema and not all(k.startswith(prefix) for k in model_state_dict.keys()):
+        if ema and not any(k.startswith(prefix) for k in model_state_dict.keys()):
             raise EMANotFound("EMA state dict not found in training checkpoint!")
 
         model_state_dict = change_state_dict_keys(
