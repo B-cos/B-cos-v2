@@ -181,7 +181,7 @@ def load_model_and_config(args):
 def get_test_loader(dataset, config):
     registry = ClassificationDataModule.registry()
     if dataset in registry:
-        datamodule = registry[dataset](config)
+        datamodule = registry[dataset](config["data"])
     else:
         available_datasets = list(registry.keys())
         raise ValueError(
