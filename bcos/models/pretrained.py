@@ -832,3 +832,698 @@ def resnet152_long(pretrained: bool = False, progress: bool = True, **kwargs):
     return _get_model(
         "resnet_152", pretrained, progress, base_network="bcos_final_long", **kwargs
     )
+
+
+# ----------------------------------------------------------------------------------------------------------------------
+# ViT models (both B-cos and non-B-cos)
+# non-B-cos i.e. standard models are prefixed with "standard_"
+# TODO: change acc and param numbers to correct ones!
+# ----------------------------------------------------------------------------------------------------------------------
+@register
+def simple_vit_ti_patch16_224(
+    pretrained: bool = False, progress: bool = True, **kwargs
+):
+    """B-cos Simple ViT-Ti with 16x16 patch size and 224x224 image size.
+
+    The weights are from epoch 433's (starting from 0) non-EMA checkpoint weights.
+
+    +---------+-------------------+
+    | Name    | Value             |
+    +=========+===================+
+    | Acc@1   |  80.144%          |
+    +---------+-------------------+
+    | Acc@5   |  94.116%          |
+    +---------+-------------------+
+    | #Params |  60.13M           |
+    +---------+-------------------+
+
+    References
+    ----------
+    `B-cos Networks: Alignment is All We Need for Interpretability <https://arxiv.org/abs/2205.10268>`_
+
+    `Better plain ViT baselines for ImageNet-1k <https://arxiv.org/abs/2205.01580>`_
+
+    Parameters
+    ----------
+    pretrained : bool
+        If True, returns a model pre-trained on ImageNet
+    progress : bool
+        If True, displays a progress bar of the download to stderr
+    **kwargs : Any, optional
+        Additional arguments passed to the model constructor
+        Please see source code for details.
+    """
+    return _get_model(
+        "bcos_simple_vit_ti_patch16_224",
+        pretrained,
+        progress,
+        base_network="vit_final",
+        **kwargs,
+    )
+
+
+@register
+def simple_vit_s_patch16_224(pretrained: bool = False, progress: bool = True, **kwargs):
+    """B-cos Simple ViT-S with 16x16 patch size and 224x224 image size.
+
+    The weights are from epoch 433's (starting from 0) non-EMA checkpoint weights.
+
+    +---------+-------------------+
+    | Name    | Value             |
+    +=========+===================+
+    | Acc@1   |  80.144%          |
+    +---------+-------------------+
+    | Acc@5   |  94.116%          |
+    +---------+-------------------+
+    | #Params |  60.13M           |
+    +---------+-------------------+
+
+    References
+    ----------
+    `B-cos Networks: Alignment is All We Need for Interpretability <https://arxiv.org/abs/2205.10268>`_
+
+    `Better plain ViT baselines for ImageNet-1k <https://arxiv.org/abs/2205.01580>`_
+
+    Parameters
+    ----------
+    pretrained : bool
+        If True, returns a model pre-trained on ImageNet
+    progress : bool
+        If True, displays a progress bar of the download to stderr
+    **kwargs : Any, optional
+        Additional arguments passed to the model constructor
+        Please see source code for details.
+    """
+    return _get_model(
+        "bcos_simple_vit_s_patch16_224",
+        pretrained,
+        progress,
+        base_network="vit_final",
+        **kwargs,
+    )
+
+
+@register
+def simple_vit_b_patch16_224(pretrained: bool = False, progress: bool = True, **kwargs):
+    """B-cos Simple ViT-B with 16x16 patch size and 224x224 image size.
+
+    The weights are from epoch 433's (starting from 0) non-EMA checkpoint weights.
+
+    +---------+-------------------+
+    | Name    | Value             |
+    +=========+===================+
+    | Acc@1   |  80.144%          |
+    +---------+-------------------+
+    | Acc@5   |  94.116%          |
+    +---------+-------------------+
+    | #Params |  60.13M           |
+    +---------+-------------------+
+
+    References
+    ----------
+    `B-cos Networks: Alignment is All We Need for Interpretability <https://arxiv.org/abs/2205.10268>`_
+
+    `Better plain ViT baselines for ImageNet-1k <https://arxiv.org/abs/2205.01580>`_
+
+    Parameters
+    ----------
+    pretrained : bool
+        If True, returns a model pre-trained on ImageNet
+    progress : bool
+        If True, displays a progress bar of the download to stderr
+    **kwargs : Any, optional
+        Additional arguments passed to the model constructor
+        Please see source code for details.
+    """
+    return _get_model(
+        "bcos_simple_vit_b_patch16_224",
+        pretrained,
+        progress,
+        base_network="vit_final",
+        **kwargs,
+    )
+
+
+@register
+def simple_vit_l_patch16_224(pretrained: bool = False, progress: bool = True, **kwargs):
+    """B-cos Simple ViT-L with 16x16 patch size and 224x224 image size.
+
+    The weights are from epoch 433's (starting from 0) non-EMA checkpoint weights.
+
+    +---------+-------------------+
+    | Name    | Value             |
+    +=========+===================+
+    | Acc@1   |  80.144%          |
+    +---------+-------------------+
+    | Acc@5   |  94.116%          |
+    +---------+-------------------+
+    | #Params |  60.13M           |
+    +---------+-------------------+
+
+    References
+    ----------
+    `B-cos Networks: Alignment is All We Need for Interpretability <https://arxiv.org/abs/2205.10268>`_
+
+    `Better plain ViT baselines for ImageNet-1k <https://arxiv.org/abs/2205.01580>`_
+
+    Parameters
+    ----------
+    pretrained : bool
+        If True, returns a model pre-trained on ImageNet
+    progress : bool
+        If True, displays a progress bar of the download to stderr
+    **kwargs : Any, optional
+        Additional arguments passed to the model constructor
+        Please see source code for details.
+    """
+    return _get_model(
+        "bcos_simple_vit_l_patch16_224",
+        pretrained,
+        progress,
+        base_network="vit_final",
+        **kwargs,
+    )
+
+
+@register
+def vitc_ti_patch1_14(pretrained: bool = False, progress: bool = True, **kwargs):
+    """B-cos Simple ViT-Ti with a convolutional stem.
+    The ViT, after the convolution stem, accepts a 1x1 patch size and 14x14 image size.
+
+    The weights are from epoch 433's (starting from 0) non-EMA checkpoint weights.
+
+    +---------+-------------------+
+    | Name    | Value             |
+    +=========+===================+
+    | Acc@1   |  80.144%          |
+    +---------+-------------------+
+    | Acc@5   |  94.116%          |
+    +---------+-------------------+
+    | #Params |  60.13M           |
+    +---------+-------------------+
+
+    References
+    ----------
+    `B-cos Networks: Alignment is All We Need for Interpretability <https://arxiv.org/abs/2205.10268>`_
+
+    `Better plain ViT baselines for ImageNet-1k <https://arxiv.org/abs/2205.01580>`_
+
+    `Early Convolutions Help Transformers See Better <https://arxiv.org/abs/2106.14881>`_
+
+    Parameters
+    ----------
+    pretrained : bool
+        If True, returns a model pre-trained on ImageNet
+    progress : bool
+        If True, displays a progress bar of the download to stderr
+    **kwargs : Any, optional
+        Additional arguments passed to the model constructor
+        Please see source code for details.
+    """
+    return _get_model(
+        "bcos_vitc_ti_patch1_14",
+        pretrained,
+        progress,
+        base_network="vit_final",
+        **kwargs,
+    )
+
+
+@register
+def vitc_s_patch1_14(pretrained: bool = False, progress: bool = True, **kwargs):
+    """B-cos Simple ViT-S with a convolutional stem.
+    The ViT, after the convolution stem, accepts a 1x1 patch size and 14x14 image size.
+
+    The weights are from epoch 433's (starting from 0) non-EMA checkpoint weights.
+
+    +---------+-------------------+
+    | Name    | Value             |
+    +=========+===================+
+    | Acc@1   |  80.144%          |
+    +---------+-------------------+
+    | Acc@5   |  94.116%          |
+    +---------+-------------------+
+    | #Params |  60.13M           |
+    +---------+-------------------+
+
+    References
+    ----------
+    `B-cos Networks: Alignment is All We Need for Interpretability <https://arxiv.org/abs/2205.10268>`_
+
+    `Better plain ViT baselines for ImageNet-1k <https://arxiv.org/abs/2205.01580>`_
+
+    `Early Convolutions Help Transformers See Better <https://arxiv.org/abs/2106.14881>`_
+
+    Parameters
+    ----------
+    pretrained : bool
+        If True, returns a model pre-trained on ImageNet
+    progress : bool
+        If True, displays a progress bar of the download to stderr
+    **kwargs : Any, optional
+        Additional arguments passed to the model constructor
+        Please see source code for details.
+    """
+    return _get_model(
+        "bcos_vitc_s_patch1_14",
+        pretrained,
+        progress,
+        base_network="vit_final",
+        **kwargs,
+    )
+
+
+@register
+def vitc_b_patch1_14(pretrained: bool = False, progress: bool = True, **kwargs):
+    """B-cos Simple ViT-B with a convolutional stem.
+    The ViT, after the convolution stem, accepts a 1x1 patch size and 14x14 image size.
+
+    The weights are from epoch 433's (starting from 0) non-EMA checkpoint weights.
+
+    +---------+-------------------+
+    | Name    | Value             |
+    +=========+===================+
+    | Acc@1   |  80.144%          |
+    +---------+-------------------+
+    | Acc@5   |  94.116%          |
+    +---------+-------------------+
+    | #Params |  60.13M           |
+    +---------+-------------------+
+
+    References
+    ----------
+    `B-cos Networks: Alignment is All We Need for Interpretability <https://arxiv.org/abs/2205.10268>`_
+
+    `Better plain ViT baselines for ImageNet-1k <https://arxiv.org/abs/2205.01580>`_
+
+    `Early Convolutions Help Transformers See Better <https://arxiv.org/abs/2106.14881>`_
+
+    Parameters
+    ----------
+    pretrained : bool
+        If True, returns a model pre-trained on ImageNet
+    progress : bool
+        If True, displays a progress bar of the download to stderr
+    **kwargs : Any, optional
+        Additional arguments passed to the model constructor
+        Please see source code for details.
+    """
+    return _get_model(
+        "bcos_vitc_b_patch1_14",
+        pretrained,
+        progress,
+        base_network="vit_final",
+        **kwargs,
+    )
+
+
+@register
+def vitc_l_patch1_14(pretrained: bool = False, progress: bool = True, **kwargs):
+    """B-cos Simple ViT-L with a convolutional stem.
+    The ViT, after the convolution stem, accepts a 1x1 patch size and 14x14 image size.
+
+    The weights are from epoch 433's (starting from 0) non-EMA checkpoint weights.
+
+    +---------+-------------------+
+    | Name    | Value             |
+    +=========+===================+
+    | Acc@1   |  80.144%          |
+    +---------+-------------------+
+    | Acc@5   |  94.116%          |
+    +---------+-------------------+
+    | #Params |  60.13M           |
+    +---------+-------------------+
+
+    References
+    ----------
+    `B-cos Networks: Alignment is All We Need for Interpretability <https://arxiv.org/abs/2205.10268>`_
+
+    `Better plain ViT baselines for ImageNet-1k <https://arxiv.org/abs/2205.01580>`_
+
+    `Early Convolutions Help Transformers See Better <https://arxiv.org/abs/2106.14881>`_
+
+    Parameters
+    ----------
+    pretrained : bool
+        If True, returns a model pre-trained on ImageNet
+    progress : bool
+        If True, displays a progress bar of the download to stderr
+    **kwargs : Any, optional
+        Additional arguments passed to the model constructor
+        Please see source code for details.
+    """
+    return _get_model(
+        "bcos_vitc_l_patch1_14",
+        pretrained,
+        progress,
+        base_network="vit_final",
+        **kwargs,
+    )
+
+
+@register
+def standard_simple_vit_ti_patch16_224(
+    pretrained: bool = False, progress: bool = True, **kwargs
+):
+    """Standard Simple ViT-Ti with 16x16 patch size and 224x224 image size.
+    This is NOT a B-cos model.
+
+    The weights are from epoch 433's (starting from 0) non-EMA checkpoint weights.
+
+    +---------+-------------------+
+    | Name    | Value             |
+    +=========+===================+
+    | Acc@1   |  80.144%          |
+    +---------+-------------------+
+    | Acc@5   |  94.116%          |
+    +---------+-------------------+
+    | #Params |  60.13M           |
+    +---------+-------------------+
+
+    References
+    ----------
+    `Better plain ViT baselines for ImageNet-1k <https://arxiv.org/abs/2205.01580>`_
+
+    Parameters
+    ----------
+    pretrained : bool
+        If True, returns a model pre-trained on ImageNet
+    progress : bool
+        If True, displays a progress bar of the download to stderr
+    **kwargs : Any, optional
+        Additional arguments passed to the model constructor
+        Please see source code for details.
+    """
+    return _get_model(
+        "simple_vit_ti_patch16_224",
+        pretrained,
+        progress,
+        base_network="vit_final",
+        **kwargs,
+    )
+
+
+@register
+def standard_simple_vit_s_patch16_224(
+    pretrained: bool = False, progress: bool = True, **kwargs
+):
+    """Standard Simple ViT-S with 16x16 patch size and 224x224 image size.
+    This is NOT a B-cos model.
+
+    The weights are from epoch 433's (starting from 0) non-EMA checkpoint weights.
+
+    +---------+-------------------+
+    | Name    | Value             |
+    +=========+===================+
+    | Acc@1   |  80.144%          |
+    +---------+-------------------+
+    | Acc@5   |  94.116%          |
+    +---------+-------------------+
+    | #Params |  60.13M           |
+    +---------+-------------------+
+
+    References
+    ----------
+    `Better plain ViT baselines for ImageNet-1k <https://arxiv.org/abs/2205.01580>`_
+
+    Parameters
+    ----------
+    pretrained : bool
+        If True, returns a model pre-trained on ImageNet
+    progress : bool
+        If True, displays a progress bar of the download to stderr
+    **kwargs : Any, optional
+        Additional arguments passed to the model constructor
+        Please see source code for details.
+    """
+    return _get_model(
+        "simple_vit_s_patch16_224",
+        pretrained,
+        progress,
+        base_network="vit_final",
+        **kwargs,
+    )
+
+
+@register
+def standard_simple_vit_b_patch16_224(
+    pretrained: bool = False, progress: bool = True, **kwargs
+):
+    """Standard Simple ViT-B with 16x16 patch size and 224x224 image size.
+    This is NOT a B-cos model.
+
+    The weights are from epoch 433's (starting from 0) non-EMA checkpoint weights.
+
+    +---------+-------------------+
+    | Name    | Value             |
+    +=========+===================+
+    | Acc@1   |  80.144%          |
+    +---------+-------------------+
+    | Acc@5   |  94.116%          |
+    +---------+-------------------+
+    | #Params |  60.13M           |
+    +---------+-------------------+
+
+    References
+    ----------
+    `Better plain ViT baselines for ImageNet-1k <https://arxiv.org/abs/2205.01580>`_
+
+    Parameters
+    ----------
+    pretrained : bool
+        If True, returns a model pre-trained on ImageNet
+    progress : bool
+        If True, displays a progress bar of the download to stderr
+    **kwargs : Any, optional
+        Additional arguments passed to the model constructor
+        Please see source code for details.
+    """
+    return _get_model(
+        "simple_vit_b_patch16_224",
+        pretrained,
+        progress,
+        base_network="vit_final",
+        **kwargs,
+    )
+
+
+@register
+def standard_simple_vit_l_patch16_224(
+    pretrained: bool = False, progress: bool = True, **kwargs
+):
+    """Standard Simple ViT-L with 16x16 patch size and 224x224 image size.
+    This is NOT a B-cos model.
+
+    The weights are from epoch 433's (starting from 0) non-EMA checkpoint weights.
+
+    +---------+-------------------+
+    | Name    | Value             |
+    +=========+===================+
+    | Acc@1   |  80.144%          |
+    +---------+-------------------+
+    | Acc@5   |  94.116%          |
+    +---------+-------------------+
+    | #Params |  60.13M           |
+    +---------+-------------------+
+
+    References
+    ----------
+    `Better plain ViT baselines for ImageNet-1k <https://arxiv.org/abs/2205.01580>`_
+
+    Parameters
+    ----------
+    pretrained : bool
+        If True, returns a model pre-trained on ImageNet
+    progress : bool
+        If True, displays a progress bar of the download to stderr
+    **kwargs : Any, optional
+        Additional arguments passed to the model constructor
+        Please see source code for details.
+    """
+    return _get_model(
+        "simple_vit_l_patch16_224",
+        pretrained,
+        progress,
+        base_network="vit_final",
+        **kwargs,
+    )
+
+
+@register
+def standard_vitc_ti_patch1_14(
+    pretrained: bool = False, progress: bool = True, **kwargs
+):
+    """Standard Simple ViT-Ti with a convolutional stem.
+    The ViT, after the convolution stem, accepts a 1x1 patch size and 14x14 image size.
+    This is NOT a B-cos model.
+
+    The weights are from epoch 433's (starting from 0) non-EMA checkpoint weights.
+
+    +---------+-------------------+
+    | Name    | Value             |
+    +=========+===================+
+    | Acc@1   |  80.144%          |
+    +---------+-------------------+
+    | Acc@5   |  94.116%          |
+    +---------+-------------------+
+    | #Params |  60.13M           |
+    +---------+-------------------+
+
+    References
+    ----------
+    `Better plain ViT baselines for ImageNet-1k <https://arxiv.org/abs/2205.01580>`_
+
+    `Early Convolutions Help Transformers See Better <https://arxiv.org/abs/2106.14881>`_
+
+    Parameters
+    ----------
+    pretrained : bool
+        If True, returns a model pre-trained on ImageNet
+    progress : bool
+        If True, displays a progress bar of the download to stderr
+    **kwargs : Any, optional
+        Additional arguments passed to the model constructor
+        Please see source code for details.
+    """
+    return _get_model(
+        "vitc_ti_patch1_14",
+        pretrained,
+        progress,
+        base_network="vit_final",
+        **kwargs,
+    )
+
+
+@register
+def standard_vitc_s_patch1_14(
+    pretrained: bool = False, progress: bool = True, **kwargs
+):
+    """Standard Simple ViT-S with a convolutional stem.
+    The ViT, after the convolution stem, accepts a 1x1 patch size and 14x14 image size.
+    This is NOT a B-cos model.
+
+    The weights are from epoch 433's (starting from 0) non-EMA checkpoint weights.
+
+    +---------+-------------------+
+    | Name    | Value             |
+    +=========+===================+
+    | Acc@1   |  80.144%          |
+    +---------+-------------------+
+    | Acc@5   |  94.116%          |
+    +---------+-------------------+
+    | #Params |  60.13M           |
+    +---------+-------------------+
+
+    References
+    ----------
+    `Better plain ViT baselines for ImageNet-1k <https://arxiv.org/abs/2205.01580>`_
+
+    `Early Convolutions Help Transformers See Better <https://arxiv.org/abs/2106.14881>`_
+
+    Parameters
+    ----------
+    pretrained : bool
+        If True, returns a model pre-trained on ImageNet
+    progress : bool
+        If True, displays a progress bar of the download to stderr
+    **kwargs : Any, optional
+        Additional arguments passed to the model constructor
+        Please see source code for details.
+    """
+    return _get_model(
+        "vitc_s_patch1_14",
+        pretrained,
+        progress,
+        base_network="vit_final",
+        **kwargs,
+    )
+
+
+@register
+def standard_vitc_b_patch1_14(
+    pretrained: bool = False, progress: bool = True, **kwargs
+):
+    """Standard Simple ViT-B with a convolutional stem.
+    The ViT, after the convolution stem, accepts a 1x1 patch size and 14x14 image size.
+    This is NOT a B-cos model.
+
+    The weights are from epoch 433's (starting from 0) non-EMA checkpoint weights.
+
+    +---------+-------------------+
+    | Name    | Value             |
+    +=========+===================+
+    | Acc@1   |  80.144%          |
+    +---------+-------------------+
+    | Acc@5   |  94.116%          |
+    +---------+-------------------+
+    | #Params |  60.13M           |
+    +---------+-------------------+
+
+    References
+    ----------
+    `Better plain ViT baselines for ImageNet-1k <https://arxiv.org/abs/2205.01580>`_
+
+    `Early Convolutions Help Transformers See Better <https://arxiv.org/abs/2106.14881>`_
+
+    Parameters
+    ----------
+    pretrained : bool
+        If True, returns a model pre-trained on ImageNet
+    progress : bool
+        If True, displays a progress bar of the download to stderr
+    **kwargs : Any, optional
+        Additional arguments passed to the model constructor
+        Please see source code for details.
+    """
+    return _get_model(
+        "vitc_b_patch1_14",
+        pretrained,
+        progress,
+        base_network="vit_final",
+        **kwargs,
+    )
+
+
+@register
+def standard_vitc_l_patch1_14(
+    pretrained: bool = False, progress: bool = True, **kwargs
+):
+    """Standard Simple ViT-L with a convolutional stem.
+    The ViT, after the convolution stem, accepts a 1x1 patch size and 14x14 image size.
+    This is NOT a B-cos model.
+
+    The weights are from epoch 433's (starting from 0) non-EMA checkpoint weights.
+
+    +---------+-------------------+
+    | Name    | Value             |
+    +=========+===================+
+    | Acc@1   |  80.144%          |
+    +---------+-------------------+
+    | Acc@5   |  94.116%          |
+    +---------+-------------------+
+    | #Params |  60.13M           |
+    +---------+-------------------+
+
+    References
+    ----------
+    `Better plain ViT baselines for ImageNet-1k <https://arxiv.org/abs/2205.01580>`_
+
+    `Early Convolutions Help Transformers See Better <https://arxiv.org/abs/2106.14881>`_
+
+    Parameters
+    ----------
+    pretrained : bool
+        If True, returns a model pre-trained on ImageNet
+    progress : bool
+        If True, displays a progress bar of the download to stderr
+    **kwargs : Any, optional
+        Additional arguments passed to the model constructor
+        Please see source code for details.
+    """
+    return _get_model(
+        "vitc_l_patch1_14",
+        pretrained,
+        progress,
+        base_network="vit_final",
+        **kwargs,
+    )
