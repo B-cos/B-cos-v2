@@ -76,14 +76,15 @@ URLS: Dict[str, Dict[str, str]] = {
         "bcos_vitc_l_patch1_14": f"{BASE}/bcos_vitc_l_patch1_14-8739e18b8d.pth",
         "bcos_vitc_s_patch1_14": f"{BASE}/bcos_vitc_s_patch1_14-cf55c88f0c.pth",
         "bcos_vitc_ti_patch1_14": f"{BASE}/bcos_vitc_ti_patch1_14-ddd6193a77.pth",
-        "standard_simple_vit_b_patch16_224": f"{BASE}/standard_simple_vit_b_patch16_224-87074200ed.pth",
-        "standard_simple_vit_l_patch16_224": f"{BASE}/standard_simple_vit_l_patch16_224-62dc536e03.pth",
-        "standard_simple_vit_s_patch16_224": f"{BASE}/standard_simple_vit_s_patch16_224-f2934fcdcf.pth",
-        "standard_simple_vit_ti_patch16_224": f"{BASE}/standard_simple_vit_ti_patch16_224-2ae8c65a39.pth",
-        "standard_vitc_b_patch1_14": f"{BASE}/standard_vitc_b_patch1_14-4d374b0220.pth",
-        "standard_vitc_l_patch1_14": f"{BASE}/standard_vitc_l_patch1_14-560e48f246.pth",
-        "standard_vitc_s_patch1_14": f"{BASE}/standard_vitc_s_patch1_14-34ecd7288e.pth",
-        "standard_vitc_ti_patch1_14": f"{BASE}/standard_vitc_ti_patch1_14-a5d6bded37.pth",
+        # standard! ie non-B-cos
+        "simple_vit_b_patch16_224": f"{BASE}/standard_simple_vit_b_patch16_224-87074200ed.pth",
+        "simple_vit_l_patch16_224": f"{BASE}/standard_simple_vit_l_patch16_224-62dc536e03.pth",
+        "simple_vit_s_patch16_224": f"{BASE}/standard_simple_vit_s_patch16_224-f2934fcdcf.pth",
+        "simple_vit_ti_patch16_224": f"{BASE}/standard_simple_vit_ti_patch16_224-2ae8c65a39.pth",
+        "vitc_b_patch1_14": f"{BASE}/standard_vitc_b_patch1_14-4d374b0220.pth",
+        "vitc_l_patch1_14": f"{BASE}/standard_vitc_l_patch1_14-560e48f246.pth",
+        "vitc_s_patch1_14": f"{BASE}/standard_vitc_s_patch1_14-34ecd7288e.pth",
+        "vitc_ti_patch1_14": f"{BASE}/standard_vitc_ti_patch1_14-a5d6bded37.pth",
     },
 }
 
