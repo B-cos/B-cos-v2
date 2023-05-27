@@ -839,6 +839,23 @@ def resnet152_long(pretrained: bool = False, progress: bool = True, **kwargs):
 # non-B-cos i.e. standard models are prefixed with "standard_"
 # TODO: change acc and param numbers to correct ones!
 # ----------------------------------------------------------------------------------------------------------------------
+def _requires_einops():
+    """Checks if einops is installed."""
+    try:
+        import einops  # noqa: F401
+    except ImportError:
+        raise RuntimeError(
+            "This model requires einops to be installed. "
+            "To fix this, run `pip install einops`."
+        )
+
+
+def _get_vit_model(*args, **kwargs):
+    """Gets a ViT model, which requires einops. Hence, it checks for it."""
+    _requires_einops()
+    return _get_model(*args, **kwargs)
+
+
 @register
 def simple_vit_ti_patch16_224(
     pretrained: bool = False, progress: bool = True, **kwargs
@@ -873,7 +890,7 @@ def simple_vit_ti_patch16_224(
         Additional arguments passed to the model constructor
         Please see source code for details.
     """
-    return _get_model(
+    return _get_vit_model(
         "bcos_simple_vit_ti_patch16_224",
         pretrained,
         progress,
@@ -914,7 +931,7 @@ def simple_vit_s_patch16_224(pretrained: bool = False, progress: bool = True, **
         Additional arguments passed to the model constructor
         Please see source code for details.
     """
-    return _get_model(
+    return _get_vit_model(
         "bcos_simple_vit_s_patch16_224",
         pretrained,
         progress,
@@ -955,7 +972,7 @@ def simple_vit_b_patch16_224(pretrained: bool = False, progress: bool = True, **
         Additional arguments passed to the model constructor
         Please see source code for details.
     """
-    return _get_model(
+    return _get_vit_model(
         "bcos_simple_vit_b_patch16_224",
         pretrained,
         progress,
@@ -996,7 +1013,7 @@ def simple_vit_l_patch16_224(pretrained: bool = False, progress: bool = True, **
         Additional arguments passed to the model constructor
         Please see source code for details.
     """
-    return _get_model(
+    return _get_vit_model(
         "bcos_simple_vit_l_patch16_224",
         pretrained,
         progress,
@@ -1040,7 +1057,7 @@ def vitc_ti_patch1_14(pretrained: bool = False, progress: bool = True, **kwargs)
         Additional arguments passed to the model constructor
         Please see source code for details.
     """
-    return _get_model(
+    return _get_vit_model(
         "bcos_vitc_ti_patch1_14",
         pretrained,
         progress,
@@ -1084,7 +1101,7 @@ def vitc_s_patch1_14(pretrained: bool = False, progress: bool = True, **kwargs):
         Additional arguments passed to the model constructor
         Please see source code for details.
     """
-    return _get_model(
+    return _get_vit_model(
         "bcos_vitc_s_patch1_14",
         pretrained,
         progress,
@@ -1128,7 +1145,7 @@ def vitc_b_patch1_14(pretrained: bool = False, progress: bool = True, **kwargs):
         Additional arguments passed to the model constructor
         Please see source code for details.
     """
-    return _get_model(
+    return _get_vit_model(
         "bcos_vitc_b_patch1_14",
         pretrained,
         progress,
@@ -1172,7 +1189,7 @@ def vitc_l_patch1_14(pretrained: bool = False, progress: bool = True, **kwargs):
         Additional arguments passed to the model constructor
         Please see source code for details.
     """
-    return _get_model(
+    return _get_vit_model(
         "bcos_vitc_l_patch1_14",
         pretrained,
         progress,
@@ -1214,7 +1231,7 @@ def standard_simple_vit_ti_patch16_224(
         Additional arguments passed to the model constructor
         Please see source code for details.
     """
-    return _get_model(
+    return _get_vit_model(
         "simple_vit_ti_patch16_224",
         pretrained,
         progress,
@@ -1256,7 +1273,7 @@ def standard_simple_vit_s_patch16_224(
         Additional arguments passed to the model constructor
         Please see source code for details.
     """
-    return _get_model(
+    return _get_vit_model(
         "simple_vit_s_patch16_224",
         pretrained,
         progress,
@@ -1298,7 +1315,7 @@ def standard_simple_vit_b_patch16_224(
         Additional arguments passed to the model constructor
         Please see source code for details.
     """
-    return _get_model(
+    return _get_vit_model(
         "simple_vit_b_patch16_224",
         pretrained,
         progress,
@@ -1340,7 +1357,7 @@ def standard_simple_vit_l_patch16_224(
         Additional arguments passed to the model constructor
         Please see source code for details.
     """
-    return _get_model(
+    return _get_vit_model(
         "simple_vit_l_patch16_224",
         pretrained,
         progress,
@@ -1385,7 +1402,7 @@ def standard_vitc_ti_patch1_14(
         Additional arguments passed to the model constructor
         Please see source code for details.
     """
-    return _get_model(
+    return _get_vit_model(
         "vitc_ti_patch1_14",
         pretrained,
         progress,
@@ -1430,7 +1447,7 @@ def standard_vitc_s_patch1_14(
         Additional arguments passed to the model constructor
         Please see source code for details.
     """
-    return _get_model(
+    return _get_vit_model(
         "vitc_s_patch1_14",
         pretrained,
         progress,
@@ -1475,7 +1492,7 @@ def standard_vitc_b_patch1_14(
         Additional arguments passed to the model constructor
         Please see source code for details.
     """
-    return _get_model(
+    return _get_vit_model(
         "vitc_b_patch1_14",
         pretrained,
         progress,
@@ -1520,7 +1537,7 @@ def standard_vitc_l_patch1_14(
         Additional arguments passed to the model constructor
         Please see source code for details.
     """
-    return _get_model(
+    return _get_vit_model(
         "vitc_l_patch1_14",
         pretrained,
         progress,
