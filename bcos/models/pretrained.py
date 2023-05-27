@@ -837,7 +837,6 @@ def resnet152_long(pretrained: bool = False, progress: bool = True, **kwargs):
 # ----------------------------------------------------------------------------------------------------------------------
 # ViT models (both B-cos and non-B-cos)
 # non-B-cos i.e. standard models are prefixed with "standard_"
-# TODO: change acc and param numbers to correct ones!
 # ----------------------------------------------------------------------------------------------------------------------
 def _requires_einops():
     """Checks if einops is installed."""
@@ -861,8 +860,6 @@ def simple_vit_ti_patch16_224(
     pretrained: bool = False, progress: bool = True, **kwargs
 ):
     """B-cos Simple ViT-Ti with 16x16 patch size and 224x224 image size.
-
-    The weights are from epoch 433's (starting from 0) non-EMA checkpoint weights.
 
     +---------+-------------------+
     | Name    | Value             |
@@ -903,8 +900,6 @@ def simple_vit_ti_patch16_224(
 def simple_vit_s_patch16_224(pretrained: bool = False, progress: bool = True, **kwargs):
     """B-cos Simple ViT-S with 16x16 patch size and 224x224 image size.
 
-    The weights are from epoch 433's (starting from 0) non-EMA checkpoint weights.
-
     +---------+-------------------+
     | Name    | Value             |
     +=========+===================+
@@ -943,8 +938,6 @@ def simple_vit_s_patch16_224(pretrained: bool = False, progress: bool = True, **
 @register
 def simple_vit_b_patch16_224(pretrained: bool = False, progress: bool = True, **kwargs):
     """B-cos Simple ViT-B with 16x16 patch size and 224x224 image size.
-
-    The weights are from epoch 433's (starting from 0) non-EMA checkpoint weights.
 
     +---------+-------------------+
     | Name    | Value             |
@@ -985,8 +978,6 @@ def simple_vit_b_patch16_224(pretrained: bool = False, progress: bool = True, **
 def simple_vit_l_patch16_224(pretrained: bool = False, progress: bool = True, **kwargs):
     """B-cos Simple ViT-L with 16x16 patch size and 224x224 image size.
 
-    The weights are from epoch 433's (starting from 0) non-EMA checkpoint weights.
-
     +---------+-------------------+
     | Name    | Value             |
     +=========+===================+
@@ -1026,8 +1017,6 @@ def simple_vit_l_patch16_224(pretrained: bool = False, progress: bool = True, **
 def vitc_ti_patch1_14(pretrained: bool = False, progress: bool = True, **kwargs):
     """B-cos Simple ViT-Ti with a convolutional stem.
     The ViT, after the convolution stem, accepts a 1x1 patch size and 14x14 image size.
-
-    The weights are from epoch 433's (starting from 0) non-EMA checkpoint weights.
 
     +---------+-------------------+
     | Name    | Value             |
@@ -1071,8 +1060,6 @@ def vitc_s_patch1_14(pretrained: bool = False, progress: bool = True, **kwargs):
     """B-cos Simple ViT-S with a convolutional stem.
     The ViT, after the convolution stem, accepts a 1x1 patch size and 14x14 image size.
 
-    The weights are from epoch 433's (starting from 0) non-EMA checkpoint weights.
-
     +---------+-------------------+
     | Name    | Value             |
     +=========+===================+
@@ -1115,8 +1102,6 @@ def vitc_b_patch1_14(pretrained: bool = False, progress: bool = True, **kwargs):
     """B-cos Simple ViT-B with a convolutional stem.
     The ViT, after the convolution stem, accepts a 1x1 patch size and 14x14 image size.
 
-    The weights are from epoch 433's (starting from 0) non-EMA checkpoint weights.
-
     +---------+-------------------+
     | Name    | Value             |
     +=========+===================+
@@ -1158,8 +1143,6 @@ def vitc_b_patch1_14(pretrained: bool = False, progress: bool = True, **kwargs):
 def vitc_l_patch1_14(pretrained: bool = False, progress: bool = True, **kwargs):
     """B-cos Simple ViT-L with a convolutional stem.
     The ViT, after the convolution stem, accepts a 1x1 patch size and 14x14 image size.
-
-    The weights are from epoch 433's (starting from 0) non-EMA checkpoint weights.
 
     +---------+-------------------+
     | Name    | Value             |
@@ -1205,8 +1188,6 @@ def standard_simple_vit_ti_patch16_224(
     """Standard Simple ViT-Ti with 16x16 patch size and 224x224 image size.
     This is NOT a B-cos model.
 
-    The weights are from epoch 433's (starting from 0) non-EMA checkpoint weights.
-
     +---------+-------------------+
     | Name    | Value             |
     +=========+===================+
@@ -1246,8 +1227,6 @@ def standard_simple_vit_s_patch16_224(
 ):
     """Standard Simple ViT-S with 16x16 patch size and 224x224 image size.
     This is NOT a B-cos model.
-
-    The weights are from epoch 433's (starting from 0) non-EMA checkpoint weights.
 
     +---------+-------------------+
     | Name    | Value             |
@@ -1289,8 +1268,6 @@ def standard_simple_vit_b_patch16_224(
     """Standard Simple ViT-B with 16x16 patch size and 224x224 image size.
     This is NOT a B-cos model.
 
-    The weights are from epoch 433's (starting from 0) non-EMA checkpoint weights.
-
     +---------+-------------------+
     | Name    | Value             |
     +=========+===================+
@@ -1330,8 +1307,6 @@ def standard_simple_vit_l_patch16_224(
 ):
     """Standard Simple ViT-L with 16x16 patch size and 224x224 image size.
     This is NOT a B-cos model.
-
-    The weights are from epoch 433's (starting from 0) non-EMA checkpoint weights.
 
     +---------+-------------------+
     | Name    | Value             |
@@ -1373,8 +1348,6 @@ def standard_vitc_ti_patch1_14(
     """Standard Simple ViT-Ti with a convolutional stem.
     The ViT, after the convolution stem, accepts a 1x1 patch size and 14x14 image size.
     This is NOT a B-cos model.
-
-    The weights are from epoch 433's (starting from 0) non-EMA checkpoint weights.
 
     +---------+-------------------+
     | Name    | Value             |
@@ -1419,8 +1392,6 @@ def standard_vitc_s_patch1_14(
     The ViT, after the convolution stem, accepts a 1x1 patch size and 14x14 image size.
     This is NOT a B-cos model.
 
-    The weights are from epoch 433's (starting from 0) non-EMA checkpoint weights.
-
     +---------+-------------------+
     | Name    | Value             |
     +=========+===================+
@@ -1464,8 +1435,6 @@ def standard_vitc_b_patch1_14(
     The ViT, after the convolution stem, accepts a 1x1 patch size and 14x14 image size.
     This is NOT a B-cos model.
 
-    The weights are from epoch 433's (starting from 0) non-EMA checkpoint weights.
-
     +---------+-------------------+
     | Name    | Value             |
     +=========+===================+
@@ -1508,8 +1477,6 @@ def standard_vitc_l_patch1_14(
     """Standard Simple ViT-L with a convolutional stem.
     The ViT, after the convolution stem, accepts a 1x1 patch size and 14x14 image size.
     This is NOT a B-cos model.
-
-    The weights are from epoch 433's (starting from 0) non-EMA checkpoint weights.
 
     +---------+-------------------+
     | Name    | Value             |
