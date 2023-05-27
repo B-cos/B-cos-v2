@@ -117,9 +117,7 @@ baseline = {
             test_criterion=nn.CrossEntropyLoss(),
             optimizer=OptimizerFactory(
                 "AdamW",
-                lr=DEFAULT_LR
-                if "_l_" not in name and "simple_vit_b" not in name
-                else DEFAULT_LR / 4,
+                lr=DEFAULT_LR,
                 weight_decay=0.0001,
             ),
             use_agc=False,
@@ -177,34 +175,12 @@ bcos = {
             test_criterion=BinaryCrossEntropyLoss(),
             optimizer=OptimizerFactory(
                 "Adam",
-                lr=DEFAULT_LR
-                if "_l_" not in name and "simple_vit_b" not in name
-                else DEFAULT_LR / 4,
+                lr=DEFAULT_LR,
             ),
         )
     )
     for name in SIMPLE_VIT_ARCHS
 }
-
-normal_lr_large_bcos_vit = dict()
-for k in list(
-    [
-        "bcos_simple_vit_l_patch16_224",
-        "bcos_simple_vit_b_patch16_224",
-        "bcos_vitc_l_patch1_14",
-    ]
-):
-    v = deepcopy(bcos[k])
-    v["optimizer"] = OptimizerFactory("Adam", lr=DEFAULT_LR)
-    normal_lr_large_bcos_vit[k + "-default_LR"] = v
-
-normal_lr_large_vit = dict()
-for k in list(
-    ["simple_vit_l_patch16_224", "simple_vit_b_patch16_224", "vitc_l_patch1_14"]
-):
-    v = deepcopy(baseline[k])
-    v["optimizer"] = OptimizerFactory("AdamW", lr=DEFAULT_LR, weight_decay=0.0001)
-    normal_lr_large_vit[k + "-default_LR"] = v
 
 
 # -------------------------------------------------------------------------
@@ -212,8 +188,6 @@ for k in list(
 CONFIGS = dict()
 CONFIGS.update(baseline)
 CONFIGS.update(bcos)
-CONFIGS.update(normal_lr_large_vit)
-CONFIGS.update(normal_lr_large_bcos_vit)
 
 if __name__ == "__main__":
     configs_cli(CONFIGS)
