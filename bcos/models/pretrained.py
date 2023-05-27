@@ -70,7 +70,7 @@ URLS: Dict[str, Dict[str, str]] = {
     "vit_final": {
         "bcos_simple_vit_ti_patch16_224": f"{BASE}/bcos_simple_vit_ti_patch16_224-4b0824b1c1.pth",
         "bcos_simple_vit_s_patch16_224": f"{BASE}/bcos_simple_vit_s_patch16_224-75e99d1f73.pth",
-        "bcos_simple_vit_b_patch16_224-": f"{BASE}/bcos_simple_vit_b_patch16_224-1fc4750806.pth",
+        "bcos_simple_vit_b_patch16_224": f"{BASE}/bcos_simple_vit_b_patch16_224-1fc4750806.pth",
         "bcos_simple_vit_l_patch16_224": f"{BASE}/bcos_simple_vit_l_patch16_224-9613b2ad0a.pth",
         "bcos_vitc_ti_patch1_14": f"{BASE}/bcos_vitc_ti_patch1_14-ddd6193a77.pth",
         "bcos_vitc_s_patch1_14": f"{BASE}/bcos_vitc_s_patch1_14-cf55c88f0c.pth",
