@@ -4,7 +4,6 @@ Configs for ViTs, both B-cos and non-B-cos (standard).
 Paper: https://arxiv.org/abs/2205.01580
 """
 import math  # noqa
-from copy import deepcopy
 
 from torch import nn
 
