@@ -72,6 +72,10 @@ def update_default(new_config):
     return update_config(DEFAULTS, new_config)
 
 
+def is_big_model(model_name: str) -> bool:
+    return "_l_" in model_name or "simple_vit_b" in model_name
+
+
 SIMPLE_VIT_ARCHS = [
     "simple_vit_ti_patch16_224",
     "simple_vit_s_patch16_224",
@@ -88,7 +92,7 @@ baseline = {
         dict(
             data=dict(
                 batch_size=DEFAULT_BATCH_SIZE
-                if "_l_" not in name and "simple_vit_b" not in name
+                if not is_big_model(name)
                 else DEFAULT_BATCH_SIZE // 2,
                 train_transform=ImageNetClassificationPresetTrain(
                     crop_size=DEFAULT_CROP_SIZE,
@@ -121,7 +125,7 @@ baseline = {
             ),
             use_agc=False,
             lr_scheduler=DEFAULT_LR_SCHEDULE
-            if "_l_" not in name and "simple_vit_b" not in name
+            if not is_big_model(name)
             else LONG_WARM_SCHEDULE,
             trainer=dict(
                 gradient_clip_val=1.0,
@@ -137,7 +141,7 @@ bcos = {
         dict(
             data=dict(
                 batch_size=DEFAULT_BATCH_SIZE
-                if "_l_" not in name and "simple_vit_b" not in name
+                if not is_big_model(name)
                 else DEFAULT_BATCH_SIZE // 2,
                 train_transform=ImageNetClassificationPresetTrain(
                     crop_size=DEFAULT_CROP_SIZE,
@@ -169,7 +173,7 @@ bcos = {
             ),
             criterion=UniformOffLabelsBCEWithLogitsLoss(),
             lr_scheduler=DEFAULT_LR_SCHEDULE
-            if "_l_" not in name and "simple_vit_b" not in name
+            if not is_big_model(name)
             else LONG_WARM_SCHEDULE,
             test_criterion=BinaryCrossEntropyLoss(),
             optimizer=OptimizerFactory(
