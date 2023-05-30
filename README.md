@@ -202,7 +202,6 @@ You can find the links to the model weights below
 | `standard_vitc_l_patch1_14`          | 77.866%        | 92.298%        | 167.54M | [link](https://github.com/B-cos/B-cos-v2/releases/download/v0.0.1-weights/standard_vitc_l_patch1_14-560e48f246.pth)          |
 
 
-We'll add ViT models to the model zoo soon, stay tuned!
 You can find these entrypoints in [`bcos/models/pretrained.py`](bcos/models/pretrained.py).
 
 
