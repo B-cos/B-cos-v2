@@ -480,5 +480,5 @@ def _warn_if_not_called_from_bcos_models_pretrained_or_torch_hub():
             "You are trying to use the entrypoints from `bcos.models.vit` directly.\n"
             "This is strongly discouraged as it might cause unintended silent errors.\n"
             "Prefer to use the entrypoints from `bcos.models.pretrained` or `torch.hub`.\n"
-            f"See line 12 of this file ({__file__}) for why."
+            f"See lines 17-29 of this file ({__file__}) for why."
         )
