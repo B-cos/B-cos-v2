@@ -1,7 +1,10 @@
 # B-cos Networks v2
-M. Böhle, N. Singh, M. Fritz, B. Schiele.
+[`arXiv`](https://arxiv.org/abs/2306.10898) | [`code`](https://github.com/B-cos/B-cos-v2)
 
-Improved B-cos Networks.
+**B-cos Alignment for Inherently Interpretable CNNs and Vision Transformers**
+
+Moritz Böhle, Navdeeppal Singh, Mario Fritz, Bernt Schiele
+
 
 # Table of Contents
 - [Introduction](#introduction)
@@ -17,9 +20,9 @@ Improved B-cos Networks.
 - [License](#license)
 
 # Introduction
-This repository contains the code for the B-cos v2 models. (_Paper coming soon!_)
+This repository contains the code for the B-cos v2 models. 
 
-These models are more efficient and easier to train than the original B-cos models. Furthermore, we make a 
+These models are more efficient and easier to train than the [original v1 B-cos models](https://github.com/moboehle/B-cos). Furthermore, we make a 
 large number of pretrained B-cos models available for use.
 
 If you want to take a quick look at the explanations the models generate, 
