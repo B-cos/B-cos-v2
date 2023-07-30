@@ -5,6 +5,12 @@
 
 Moritz Böhle, Navdeeppal Singh, Mario Fritz, Bernt Schiele
 
+<p align="center">
+<img
+  src="https://github.com/B-cos/B-cos-v2/assets/29735499/c7007c18-260b-4831-938e-3942e80f5a5b"
+  width="1000">
+</p>
+
 
 # Table of Contents
 - [Introduction](#introduction)
