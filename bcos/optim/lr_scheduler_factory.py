@@ -147,7 +147,7 @@ class LRSchedulerFactory:
         return type(self)(
             name=self.name,
             step_size=self.step_size,
-            gamma=self.step_size,
+            gamma=self.gamma,
             epochs=epochs,
             lr_min=self.lr_min,
             interval=self.interval,
