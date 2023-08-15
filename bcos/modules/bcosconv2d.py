@@ -120,6 +120,10 @@ class BcosConv2d(DetachableModule):
             dtype=dtype,
         )
 
+        self.patch_size = int(
+            np.prod(self.linear.kernel_size)  # internally converted to a pair
+        )
+
     def forward(self, in_tensor: Tensor) -> Tensor:
         """
         Forward pass implementation.
@@ -196,8 +200,9 @@ class BcosConv2d(DetachableModule):
                 self.kernel_size,
                 padding=self.padding,
                 stride=self.stride,
-                divisor_override=1,
+                # divisor_override=1,  # incompatible w/ torch.compile
             )
+            * self.patch_size
             + 1e-6  # stabilizing term
         ).sqrt_()
 
