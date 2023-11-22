@@ -1,6 +1,6 @@
 # this will allow you to run all the basic things like training and inference
 einops
-pytorch-lightning>=1.8.0
+pytorch-lightning>=1.8.0,<2.0.0
 torch>=1.13
 torchvision
 torchmetrics>=0.11.0
