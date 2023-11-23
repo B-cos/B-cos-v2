@@ -251,7 +251,7 @@ If you simply want to measure the accuracy of your model on a dataset, you can u
 python evaluate.py \
     --dataset CIFAR10 \
     --base_network norm_ablations_final \
-    --experiment_name resnet_20_bnu-linear-nomaxout
+    --experiment_name resnet_20_bnu-linear-nomaxout \
     --reload last
 ```
 
