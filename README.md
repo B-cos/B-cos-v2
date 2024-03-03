@@ -1,9 +1,9 @@
 # B-cos Networks v2
-[`arXiv`](https://arxiv.org/abs/2306.10898) | [`code`](https://github.com/B-cos/B-cos-v2)
+[`DOI`](https://doi.org/10.1109/TPAMI.2024.3355155) | [`arXiv`](https://arxiv.org/abs/2306.10898) | [`code`](https://github.com/B-cos/B-cos-v2)
 
 **B-cos Alignment for Inherently Interpretable CNNs and Vision Transformers**
 
-Moritz Böhle, Navdeeppal Singh, Mario Fritz, Bernt Schiele
+Moritz Böhle, Navdeeppal Singh, Mario Fritz, Bernt Schiele. TPAMI, 2024.
 
 <p align="center">
 <img
@@ -224,3 +224,16 @@ licensed under the [ImageNet Terms of access](https://image-net.org/download),
 which among others things, only allows non-commercial use of the dataset.
 It is therefore your responsibility to check whether you have permission to use the 
 pre-trained models for *your* use case.
+
+# Citation
+
+```bibtex
+@article{Boehle2024TPAMI,
+  author={Böhle, Moritz and Singh, Navdeeppal and Fritz, Mario and Schiele, Bernt},
+  title = {B-cos Alignment for Inherently Interpretable CNNs and Vision Transformers},
+  journal = {IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  year = {2024},
+  pages = {1-15},
+  doi = {10.1109/TPAMI.2024.3355155},
+}
+```
