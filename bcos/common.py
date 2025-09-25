@@ -153,6 +153,8 @@ class BcosUtilMixin:
                 "Input tensor did not require grad! Has been set automatically to True!"
             )
             in_tensor.requires_grad = True  # nonsense otherwise
+        if in_tensor.grad is not None:  # clear gradients if used same tensor is used multiple times
+            in_tensor.grad.zero_()
         if self.training:  # noqa
             warnings.warn(
                 "Model is in training mode! "
